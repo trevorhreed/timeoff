@@ -6,10 +6,10 @@ app.controller('userController', function($scope, $http, $filter, user){
 			});	
 	};
 	$scope.saveRequest = function(){
-		if(typeof $scope.request.startdate == 'string'){
+		if(typeof $scope.request.startdate != 'number'){
 			$scope.request.startdate = Date.parse($scope.request.startdate);
 		}
-		if(typeof $scope.request.enddate == 'string'){
+		if(typeof $scope.request.enddate != 'number'){
 			$scope.request.enddate = Date.parse($scope.request.enddate);
 		}
 		if($scope.request.id){
