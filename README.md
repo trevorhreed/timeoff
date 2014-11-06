@@ -1,7 +1,5 @@
-timeoff
+Time-Off Request System (TORS)
 =======
-
-A time-off request system
 
 ## Instructions
 
