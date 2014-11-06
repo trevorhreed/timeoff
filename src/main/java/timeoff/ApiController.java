@@ -93,12 +93,30 @@ public class ApiController {
 		for(User user : groupUsers){
 			requests.addAll(requestRepo.findByUser(user.getHandle()));
 		}
-		Map<String, Object> json = new HashMap<String, Object>();
-		json.put("supervisor", supervisor);
-		json.put("group", supervisor.getEmpGroup());
-		json.put("groupUsers", groupUsers);
-		json.put("requests", requests);
-		
 		return requests;
+	}
+	
+	@RequestMapping(value="/groups/approver/{requestId}", method=RequestMethod.POST)
+	public Map approveRequest(@PathVariable long requestId) {
+		RequestRepo requestRepo = ctx.getBean(RequestRepo.class);
+		Request request = requestRepo.findOne(requestId);
+		request.setStatus(2);
+		Request updatedRequest = requestRepo.save(request);
+		Map<String, Object> json = new HashMap<String, Object>();
+		json.put("message", "success");
+		json.put("entity", updatedRequest);
+		return json;
+	}
+	
+	@RequestMapping(value="/groups/denier/{requestId}", method=RequestMethod.POST)
+	public Map denyRequest(@PathVariable long requestId) {
+		RequestRepo requestRepo = ctx.getBean(RequestRepo.class);
+		Request request = requestRepo.findOne(requestId);
+		request.setStatus(3);
+		Request updatedRequest = requestRepo.save(request);
+		Map<String, Object> json = new HashMap<String, Object>();
+		json.put("message", "success");
+		json.put("entity", updatedRequest);
+		return json;
 	}
 }

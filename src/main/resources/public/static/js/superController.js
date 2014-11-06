@@ -7,10 +7,16 @@ app.controller('superController', function($scope, $http, user){
 			});
 	};
 	$scope.approveRequest = function(request){
-		
+		$http.post('/api/groups/approver/' + request.id)
+			.success(function(){
+				request.status = 2;
+			});
 	};
 	$scope.denyRequest = function(request){
-		
+		$http.post('/api/groups/denier/' + request.id)
+			.success(function(){
+				request.status = 2;
+			});
 	};
 	
 	$scope.format = "dd MMM yyyy";
