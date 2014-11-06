@@ -1,0 +1,30 @@
+.wrapper{
+	width:800px;
+	margin:2em auto;
+}
+
+.form{
+	width:400px;
+	margin:2em auto;
+}
+
+.report{
+	width:600px;
+	margin:2em auto;
+}
+
+.data-table{
+	width:100%;
+}
+.data-table th{
+	border-bottom:solid 1px #aaa;
+}
+.data-table th, .data-table td{
+	padding:.5em 1em;
+}
+
+
+.subtitle{
+	font-size:1.4em;
+	color:#aaa;
+}

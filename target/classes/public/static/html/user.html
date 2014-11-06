@@ -1,0 +1,71 @@
+<div ng-controller='userController'>
+	<h1>Hello {{userName}}!</h1>
+	<p class='subtitle'>Ready for a vacation?  Not feeling too well? You've come to the right place.  Just fill out this form and we'll get you taken care of!</p>
+	<div class='form'>
+		<div class='form-group'>
+			<label for="startdate">Start Date:</label>
+			<p class="input-group">
+				<input type="text" id="startdate" class="form-control" ng-click="startOpened=true" datepicker-popup="{{format}}" ng-model="request.startdate" is-open="startOpened" ng-required="true" close-text="Close" />
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-default" ng-click="startOpened=true"><i class="glyphicon glyphicon-calendar"></i></button>
+				</span>
+			</p>
+		</div>
+		<div class='form-group'>
+			<label for="enddate">End Date:</label>
+			<p class="input-group">
+				<input type="text" id="enddate" class="form-control" ng-click="endOpened=true" datepicker-popup="dd MMM yyyy" ng-model="request.enddate" is-open="endOpened" ng-required="true" close-text="Close" />
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-default" ng-click="openEndDate()"><i class="glyphicon glyphicon-calendar"></i></button>
+				</span>
+			</p>
+		</div>
+		<div class='form-group'>
+			<div class='radio'>
+				<label>
+					<input type='radio' ng-model='request.type' value='Vacation' />
+					Vacation
+				</label>
+			</div>
+			<div class='radio'>
+				<label>
+					<input type='radio' ng-model='request.type' value='Sick' />
+					Sick
+				</label>
+			</div>
+			<div class='radio'>
+				<label>
+					<input type='radio' ng-model='request.type' value='Holiday' />
+					Holiday
+				</label>
+			</div>
+		</div>
+		<button class='btn btn-primary' ng-click="saveRequest()">{{request.id ? 'Update Request' : 'Submit Request'}}</button>
+		<button class='btn btn-default' ng-click="clearRequest()">Cancel</button>
+	</div>
+	<br/><h3>Pending Requests</h3>
+	<div class='report'>
+		<table class='data-table'>
+			<thead>
+				<tr>
+					<th style='width:1px;'>&nbsp;</th>
+					<th style='width:25%;'>Start Time</th>
+					<th style='width:25%;'>End Time</th>
+					<th style='width:25%;'>Type</th>
+					<th style='width:25%;'>Status</th>
+					<th style='width:1px;'>&nbsp;</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="request in requests | orderBy:['status', 'startdate', 'enddate']">
+					<td><a href='javascript:void(0);' ng-click='editRequest(request)'>Edit</a></td>
+					<td>{{request.startdate | date:format}}</td>
+					<td>{{request.enddate | date:format}}</td>
+					<td>{{request.type}}</td>
+					<td>{{statuses[request.status]}}</td>
+					<td><a href='javascript:void(0);' ng-click='cancelRequest(request, $index)'>Cancel</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

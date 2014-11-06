@@ -1,0 +1,29 @@
+<div ng-controller='superController'>
+	<h1>Hello {{userName}}!</h1>
+	<p class='subtitle'>...</p>
+	<br/><h3>Pending Requests</h3>
+	<div class='report'>
+		<table class='data-table'>
+			<thead>
+				<tr>
+					<th style='width:25%;'>Employee</th>
+					<th style='width:25%;'>Start Time</th>
+					<th style='width:25%;'>End Time</th>
+					<th style='width:25%;'>Type</th>
+					<th style='width:1px;'>&nbsp;</th>
+					<th style='width:1px;'>&nbsp;</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="request in requests | filter:{status: 1} | orderBy:['startdate', 'enddate']">
+					<td>{{request.user}}</td>
+					<td>{{request.startdate | date:format}}</td>
+					<td>{{request.enddate | date:format}}</td>
+					<td>{{request.type}}</td>
+					<td><a href='javascript:void(0);' ng-click='approveRequest(request, $index)'>Approve</a></td>
+					<td><a href='javascript:void(0);' ng-click='denyRequest(request, $index)'>Deny</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
