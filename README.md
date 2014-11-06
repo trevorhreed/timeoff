@@ -7,3 +7,6 @@ Time-Off Request System (TORS)
  2. Open a command prompt in the root directory of the project
  3. Execute the following command: "java -jar target/timeoff-0.1.0.jar"
  4. Open a browser and navigate to "localhost:9090/"
+
+## Note
+ * The authentication and storage persistence are in-memory only.  Restarting the jar process will reset the database.
