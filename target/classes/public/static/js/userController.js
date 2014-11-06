@@ -14,7 +14,7 @@ app.controller('userController', function($scope, $http, $filter, user){
 		}
 		if($scope.request.id){
 			$http.put('/api/requests/' + $scope.request.id, $scope.request)
-				.success(function(){
+				.success(function(data){
 					for(var i=0; i < $scope.requests.length; i++){
 						if($scope.requests[i].id == $scope.request.id){
 							$scope.requests[i] = $scope.request;
@@ -25,8 +25,8 @@ app.controller('userController', function($scope, $http, $filter, user){
 				});
 		}else{
 			$http.post('/api/requests', $scope.request)
-				.success(function(){
-					$scope.requests.push($scope.request);
+				.success(function(data){
+					$scope.requests.push(data.entity);
 					$scope.clearRequest();
 				});
 		}
@@ -46,6 +46,15 @@ app.controller('userController', function($scope, $http, $filter, user){
 				$scope.requests.splice(index, 1);
 			});
 	};
+	$scope.open = function(prop, $event){
+		if($event){
+			$event.preventDefault();
+    	$event.stopPropagation();
+		}
+		$scope['openEnd'] = false;
+		$scope['openStart'] = false;
+		$scope[prop] = true;
+	}
 	$scope.format = "dd MMM yyyy";
 	$scope.statuses = {
 		'1': 'Pending',
