@@ -9,5 +9,5 @@ Time-Off Request System (TORS)
  4. Open a browser and navigate to "localhost:9090/"
 
 ## Notes
- * The storage persistence are in-memory only.  Restarting the jar process will reset the database.
- * The database is initialized with a single request, for Amy.
+ * The storage persistence is in-memory only.  Restarting the jar process will reset the database.
+ * The database is initialized with a single time-off request, for Amy.
