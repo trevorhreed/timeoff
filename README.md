@@ -8,5 +8,6 @@ Time-Off Request System (TORS)
  3. Execute the following command: "java -jar target/timeoff-0.1.0.jar"
  4. Open a browser and navigate to "localhost:9090/"
 
-## Note
- * The authentication and storage persistence are in-memory only.  Restarting the jar process will reset the database.
+## Notes
+ * The storage persistence are in-memory only.  Restarting the jar process will reset the database.
+ * The database is initialized with a single request, for Amy.
